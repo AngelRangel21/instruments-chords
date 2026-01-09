@@ -13,10 +13,10 @@ export function getChordSvg (root: string, quality?: any): string | null {
 
   return `
   <svg
-    width="${SVG_WIDTH}
-    heigth="${SVG_HEIGTH}
+    width="${SVG_WIDTH}"
+    height="${SVG_HEIGTH}"
     viewBox="0 0 ${SVG_WIDTH} ${SVG_HEIGTH}"
-    xmlns="http"://www.w3.org/2000/svg"
+    xmlns="http://www.w3.org/2000/svg"
   >
     ${base}
     ${markers}

@@ -1,6 +1,6 @@
 {
-  "name": "@angel-rangel/instruments-chords",
-  "version": "0.0.1",
+  "name": "instruments-chords",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "Guitar chords database for developers",
