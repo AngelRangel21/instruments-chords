@@ -1,5 +1,5 @@
 export const SVG_WIDTH = 120
-export const SVG_HEIGTH = 160
+export const SVG_HEIGHT = 160
 
 export const STRING_COUNT = 6
 export const FRET_COUNT = 5
