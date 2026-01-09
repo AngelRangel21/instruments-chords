@@ -1,0 +1,32 @@
+{
+  "name": "instruments-chords",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "Guitar chords database for developers",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest"
+  },
+  "keywords": [
+    "guitar",
+    "chords",
+    "music"
+  ],
+  "author": "Angel Rangel",
+  "devDependencies": {
+    "typescript": "^5",
+    "prettier": "^3.7.4",
+    "ts-standard": "^12.0.2",
+    "vitest": "^4.0.16"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/ts-config/eslintrc.json"
+  }
+}
