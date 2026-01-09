@@ -9,9 +9,9 @@ export function renderMarkers(chord: ChordShape): string {
     const x = getStringX(s)
 
     if (fret === 'x') {
-      svg += `<text x="${x}" y="20" text-anchor="middle">x</text>`
+      svg += `<text x="${x}" y="20" text-anchor="middle" fill="currentcolor">x</text>`
     } else if (fret === 0) {
-      svg += `<circle cx="${x}" cy="20" r="5" fill="none" stroke="currentcolor"/>`
+      svg += `<circle cx="${x}" cy="17" r="5" fill="none" stroke="currentcolor"/>`
     } else {
       const y = getFretY(fret)
       svg += `<circle cx="${x}" cy="${y}" r="6" fill="currentcolor"/>`
