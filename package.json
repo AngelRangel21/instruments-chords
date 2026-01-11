@@ -1,6 +1,6 @@
 {
   "name": "instruments-chords",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "Guitar chords database for developers",
@@ -20,9 +20,9 @@
   ],
   "author": "Angel Rangel",
   "devDependencies": {
-    "typescript": "^5",
     "prettier": "^3.7.4",
     "ts-standard": "^12.0.2",
+    "typescript": "^5",
     "vitest": "^4.0.16"
   },
   "eslintConfig": {
