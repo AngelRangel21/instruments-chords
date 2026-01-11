@@ -19,7 +19,16 @@ export type ChordQuality =
   | 'aug'
   | 'dim'
 
+export type ChordVariantId = string
+
+export type ChordVariant = Record<ChordVariantId, ChordShape>
+
+export interface ChordQualityDefinition {
+  default: ChordVariantId
+  variants: ChordVariant
+}
+
 export type ChordsDictionary = Record<
 string,
-Partial<Record<ChordQuality, ChordShape>>
+Partial<Record<ChordQuality, ChordQualityDefinition>>
 >
