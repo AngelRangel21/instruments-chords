@@ -1,4 +1,5 @@
 export { getChord } from './getChord'
 export { getChordSvg } from './getChordSvg'
+export { getVariants } from './getVariants'
 export { chords } from './chords/index'
 export * from './types'
