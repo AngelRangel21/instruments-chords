@@ -1,10 +1,10 @@
 import { chords } from './chords'
-import { ChordQuality, ChordVariantId } from './types'
+import { ChordQuality, VariantId } from './types'
 
 export function getVariants(
   root: string,
   quality: ChordQuality
-): ChordVariantId[] {
+): VariantId[] {
   const chord = chords[root]
 
   if (chord === undefined) return []
@@ -13,5 +13,5 @@ export function getVariants(
 
   if (qualityObj === undefined) return []
 
-  return Object.keys(qualityObj.variants) as ChordVariantId[]
+  return Object.keys(qualityObj.variants) as VariantId[]
 }

@@ -2,12 +2,12 @@ import { getChord } from './getChord'
 import { renderBase } from './svg/base'
 import { renderMarkers } from './svg/markers'
 import { SVG_WIDTH, SVG_HEIGHT } from './svg/constants'
-import type { ChordQuality, ChordVariantId } from './types'
+import type { ChordQuality, VariantId } from './types'
 
-export function getChordSvg (
+export function getChordSvg(
   root: string,
   quality: ChordQuality,
-  variant?: ChordVariantId
+  variant?: VariantId
 ): string | null {
   const chord = getChord(root, quality, variant)
 
