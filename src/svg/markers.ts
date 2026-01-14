@@ -1,10 +1,24 @@
 import type { ChordShape, StringNumber } from '../types'
-import { getStringX, getFretY } from './utils'
+import { FRET_SPACING, START_Y } from './constants'
+import { getStringX, getFretY, getBaseFret } from './utils'
 
 const STRING_ORDER: StringNumber[] = ['6', '5', '4', '3', '2', '1']
 
-export function renderMarkers (chord: ChordShape): string {
+export function renderMarkers(chord: ChordShape): string {
   let svg = ''
+
+  const baseFret = getBaseFret(chord)
+
+  if (baseFret > 1) {
+    svg += `
+      <text
+        x="5"
+        y="${START_Y + FRET_SPACING}"
+        font-size="12"
+        fill="currentColor"
+      >${baseFret}</text>
+    `
+  }
 
   for (const string of STRING_ORDER) {
     const fret = chord[string]
@@ -35,7 +49,8 @@ export function renderMarkers (chord: ChordShape): string {
       continue
     }
 
-    const y = getFretY(fret)
+    const visualFret = fret - baseFret + 1
+    const y = getFretY(visualFret)
 
     svg += `
       <circle
