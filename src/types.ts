@@ -1,7 +1,13 @@
 export type StringNumber = '1' | '2' | '3' | '4' | '5' | '6'
 export type Fret = number | 'x'
-
 export type ChordShape = Record<StringNumber, Fret>
+
+export type VariantId = string
+
+export interface ChordQualityDefinition {
+  default: VariantId
+  variants: Record<VariantId, ChordShape>
+}
 
 export type ChordQuality =
   | 'major'
@@ -19,16 +25,8 @@ export type ChordQuality =
   | 'aug'
   | 'dim'
 
-export type ChordVariantId = string
-
-export type ChordVariant = Record<ChordVariantId, ChordShape>
-
-export interface ChordQualityDefinition {
-  default: ChordVariantId
-  variants: ChordVariant
-}
-
-export type ChordsDictionary = Record<
-string,
-Partial<Record<ChordQuality, ChordQualityDefinition>>
+export type ChordDefinition = Partial<
+  Record<ChordQuality, ChordQualityDefinition>
 >
+
+export type ChordsDictionary = Record<string, ChordDefinition>
