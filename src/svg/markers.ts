@@ -13,10 +13,14 @@ export function renderMarkers(chord: ChordShape): string {
     svg += `
       <text
         x="5"
-        y="${START_Y + FRET_SPACING}"
+        y="${START_Y + FRET_SPACING / 2}"
         font-size="12"
         fill="currentColor"
-      >${baseFret}</text>
+        dominant-baseline="middle"
+        text-anchor="middle"
+      >
+        ${baseFret}
+      </text>
     `
   }
 
