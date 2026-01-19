@@ -64,7 +64,7 @@ export const Csharp: ChordDefinition = {
         6: 'x',
         5: 4,
         4: 3,
-        3: 5,
+        3: 6,
         2: 'x',
         1: 'x'
       }
