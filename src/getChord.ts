@@ -1,5 +1,5 @@
-import type { ChordQuality, ChordShape, VariantId } from './types'
-import { chords } from './chords'
+import type { ChordQuality, ChordShape, VariantId } from './types.js'
+import { chords } from './chords/index.js'
 
 export function getChord(
   root: string,
@@ -7,7 +7,7 @@ export function getChord(
   variant?: VariantId
 ): ChordShape | null {
   const chord = chords[root]
-  if (chord === null) return null
+  if (chord === undefined) return null
 
   const qualityDefinition = chord[quality]
 

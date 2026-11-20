@@ -1,8 +1,14 @@
 {
   "name": "instruments-chords",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "description": "Guitar chords database for developers",
   "license": "MIT",
   "type": "module",

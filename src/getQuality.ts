@@ -1,5 +1,5 @@
-import { chords } from './chords'
-import { ChordQuality } from './types'
+import { chords } from './chords/index.js'
+import { ChordQuality } from './types.js'
 
 export function getQuality(root: string): ChordQuality[] {
   const chord = chords[root]

@@ -1,4 +1,4 @@
-import { ChordShape, StringNumber } from '../types'
+import type { ChordShape, StringNumber } from '../types.js'
 
 export interface Barre {
   fret: number
@@ -8,45 +8,38 @@ export interface Barre {
 
 const STRING_ORDER: StringNumber[] = ['6', '5', '4', '3', '2', '1']
 
+// Solo hace falta cejilla si se pisan más notas que dedos disponibles.
+// Ej.: A x02220 y D xx0232 se tocan con 3 dedos; F 133211 pisa 6 notas.
+const MAX_FINGERS = 4
+
+/**
+ * Detecta la cejilla: el traste más bajo que se pisa, desde la primera hasta
+ * la última cuerda pisada en ese traste, siempre que ninguna cuerda intermedia
+ * esté muteada, al aire o en un traste más bajo, y que se pisen más de
+ * MAX_FINGERS notas.
+ * Ej.: F 133211 → cejilla en el traste 1 de la 6ª a la 1ª.
+ */
 export function detectBarre(chord: ChordShape): Barre | null {
-  const fretsMap: Record<number, StringNumber[]> = {}
+  const frets = STRING_ORDER.map((string) => chord[string])
+  const pressed = frets.filter(
+    (fret): fret is number => typeof fret === 'number' && fret > 0
+  )
+  if (pressed.length <= MAX_FINGERS) return null
 
-  for (const string of STRING_ORDER) {
-    const fret = chord[string]
+  const barreFret = Math.min(...pressed)
+  const first = frets.indexOf(barreFret)
+  const last = frets.lastIndexOf(barreFret)
 
-    // ignorar cuerdas muteadas o al aire
-    if (typeof fret !== 'number' || fret <= 0) continue
+  if (first === last) return null
 
-    if (!fretsMap[fret]) {
-      fretsMap[fret] = []
-    }
-    fretsMap[fret].push(string)
+  for (let i = first; i <= last; i++) {
+    const fret = frets[i]
+    if (typeof fret !== 'number' || fret < barreFret) return null
   }
 
-  for (const fretStr in fretsMap) {
-    const strings = fretsMap[Number(fretStr)]
-
-    if (strings.length < 2) continue
-
-    const indices = strings
-      .map((s) => STRING_ORDER.indexOf(s))
-      .sort((a, b) => a - b)
-
-    let consecutive = true
-    for (let i = 1; i < indices.length; i++) {
-      if (indices[i] !== indices[i - 1] + 1) {
-        consecutive = false
-        break
-      }
-    }
-
-    if (consecutive) {
-      return {
-        fret: Number(fretStr),
-        from: STRING_ORDER[indices[0]],
-        to: STRING_ORDER[indices.length - 1]
-      }
-    }
+  return {
+    fret: barreFret,
+    from: STRING_ORDER[first],
+    to: STRING_ORDER[last]
   }
-  return null
 }

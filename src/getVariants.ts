@@ -1,10 +1,7 @@
-import { chords } from './chords'
-import { ChordQuality, VariantId } from './types'
+import { chords } from './chords/index.js'
+import { ChordQuality, VariantId } from './types.js'
 
-export function getVariants(
-  root: string,
-  quality: ChordQuality
-): VariantId[] {
+export function getVariants(root: string, quality: ChordQuality): VariantId[] {
   const chord = chords[root]
 
   if (chord === undefined) return []

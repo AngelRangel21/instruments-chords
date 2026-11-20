@@ -5,13 +5,14 @@ import {
   FRET_SPACING,
   START_X,
   START_Y
-} from './constants'
+} from './constants.js'
 
-export function renderBase(): string {
+export function renderBase(baseFret = 1): string {
   let svg = ''
 
-  // CEJUELA (traste 0)
-  svg += `
+  // CEJUELA (traste 0): solo si el diagrama empieza en el traste 1.
+  if (baseFret === 1) {
+    svg += `
     <rect
       x="${START_X - 2}"
       y="${START_Y - 6}"
@@ -20,6 +21,7 @@ export function renderBase(): string {
       fill="currentColor"
     />
   `
+  }
 
   // cuerdas
   for (let i = 0; i < STRING_COUNT; i++) {

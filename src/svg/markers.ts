@@ -1,21 +1,20 @@
-import { detectBarre } from '../logic/detectBarre'
-import type { ChordShape, StringNumber } from '../types'
-import { renderBarre } from './barre'
-import { FRET_SPACING, START_Y } from './constants'
-import { getStringX, getFretY, getBaseFret } from './utils'
+import { detectBarre } from '../logic/detectBarre.js'
+import type { ChordShape, StringNumber } from '../types.js'
+import { renderBarre } from './barre.js'
+import { FRET_SPACING, START_Y } from './constants.js'
+import { getStringX, getFretY, getBaseFret, toVisualFret } from './utils.js'
 
 const STRING_ORDER: StringNumber[] = ['6', '5', '4', '3', '2', '1']
 
 export function renderMarkers(chord: ChordShape): string {
   let svg = ''
 
+  const baseFret = getBaseFret(chord)
   const barre = detectBarre(chord)
 
   if (barre) {
-    svg += renderBarre(barre)
+    svg += renderBarre(barre, baseFret)
   }
-
-  const baseFret = getBaseFret(chord)
 
   if (baseFret > 1) {
     svg += `
@@ -61,7 +60,7 @@ export function renderMarkers(chord: ChordShape): string {
       continue
     }
 
-    const visualFret = fret - baseFret + 1
+    const visualFret = toVisualFret(fret, baseFret)
     const y = getFretY(visualFret)
 
     svg += `

@@ -1,4 +1,4 @@
-import { ChordDefinition } from '../types'
+import { ChordDefinition } from '../types.js'
 
 export const D: ChordDefinition = {
   major: {
